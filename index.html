@@ -169,14 +169,682 @@
 </div>
 
 <script>
-let data = {};
-
-function loadJSON() {
-  fetch('data.json')
-    .then(r => r.json())
-    .then(d => { data = d; render(); })
-    .catch(e => { document.getElementById('cards').innerHTML = '<p style="color:red;padding:20px;">Could not load data.json. Make sure both index.html and data.json are in the same GitHub Pages repo.</p>'; });
-}
+let data = {
+  "updated": "2026-08-17",
+  "projects": [
+    {
+      "id": "metis-kin-exhibit",
+      "name": "M\u00e9tis Kin Exhibit (RRMNHC Kiosk)",
+      "status": "active",
+      "desc": "Shoebox V2 kiosk at RRMNHC \u2014 controller tablet + large display + state server (:8081) + static server (:8082). Ember UI: crimson/cream, Cinzel/EB Garamond, beadwork motif.",
+      "lastActivity": "Aug 10 \u2014 architecture doc written. Kiosk portproxy watchdog is P0 open item.",
+      "links": [
+        {
+          "label": "controller.html",
+          "path": "file:///home/bayard_devries/projects/Shoebox%20V2/shoebox/controller.html"
+        },
+        {
+          "label": "projector.html",
+          "path": "file:///home/bayard_devries/projects/Shoebox%20V2/shoebox/projector.html"
+        },
+        {
+          "label": "index.html",
+          "path": "file:///home/bayard_devries/projects/Shoebox%20V2/shoebox/index.html"
+        },
+        {
+          "label": "wiki \u2014 metis-kin-exhibit.md",
+          "path": "file:///home/bayard_devries/wiki/projects/metis-kin-exhibit.md"
+        },
+        {
+          "label": "AGENTS.md",
+          "path": "file:///home/bayard_devries/projects/Shoebox%20V2/AGENTS.md"
+        }
+      ],
+      "diagrams": [
+        {
+          "file": "file:///home/bayard_devries/projects/Shoebox%20V2/shoebox/icons.svg",
+          "label": "Icons"
+        },
+        {
+          "file": "file:///home/bayard_devries/projects/Shoebox%20V2/shoebox/favicon.svg",
+          "label": "Favicon"
+        }
+      ],
+      "openItems": [
+        {
+          "text": "Kiosk portproxy self-heal watchdog not built (P0)",
+          "pin": true
+        },
+        {
+          "text": "Combined dashboard deploy script not built (test-suite + dual DLL)",
+          "pin": true
+        },
+        {
+          "text": "Clarify poll vs subscribe for display surface"
+        },
+        {
+          "text": "Confirm failover behavior if state server restarts mid-exhibit"
+        }
+      ]
+    },
+    {
+      "id": "homeland-map",
+      "name": "Homeland Map",
+      "status": "active",
+      "desc": "Interactive web-based M\u00e9tis homeland map for RRMNHC + DMC. 190 locations in data/locations.geojson. Barkwell + VM GDI + Hornaday + MMF 2022 sources.",
+      "lastActivity": "Aug 11 \u2014 working meeting. 10 confirmed missing locations identified. 3 data tiers decided. Community add/correct capability needed.",
+      "links": [
+        {
+          "label": "index.html (EXHIBITS + ALL_IMAGES)",
+          "path": "file:///home/bayard_devries/projects/homeland-map/index.html"
+        },
+        {
+          "label": "Review instance (GitHub Pages)",
+          "path": "https://bayarddevries.github.io/homeland-map-review"
+        },
+        {
+          "label": "wiki \u2014 homeland-map.md",
+          "path": "file:///home/bayard_devries/wiki/projects/homeland-map.md"
+        }
+      ],
+      "diagrams": [
+        {
+          "file": "file:///home/bayard_devries/projects/homeland-map/archive-grid-masonry.png",
+          "label": "Archive grid"
+        },
+        {
+          "file": "file:///home/bayard_devries/projects/homeland-map/test-map.png",
+          "label": "Test map"
+        },
+        {
+          "file": "file:///home/bayard_devries/projects/homeland-map/favicon.svg",
+          "label": "Favicon"
+        },
+        {
+          "file": "file:///home/bayard_devries/projects/flow-diagrams/index.html",
+          "label": "System diagrams \u2192"
+        }
+      ],
+      "openItems": [
+        {
+          "text": "Add 10 confirmed missing locations: Ile a la Crosse, Meadow Lake, St. Lazar, St. Adolphe, Fort Mr. Grant, Kelly Lake, Pine Bluff, Capel/Capella House, Chimney Town/Rooster Town/Fort Rouge, St. Vital",
+          "pin": true
+        },
+        {
+          "text": "Community add/correct capability (interactive, not authoritative)",
+          "pin": true
+        },
+        {
+          "text": "Accuracy pass on hand-placed coordinates"
+        },
+        {
+          "text": "MMF must hand Tactica an APPROVED dataset"
+        },
+        {
+          "text": "Political caution: trade-route dots \u2260 homeland; no territorial-claim implication"
+        }
+      ]
+    },
+    {
+      "id": "rrmnhc-centre",
+      "name": "RRMNHC Heritage Centre",
+      "status": "active",
+      "desc": "The Red River M\u00e9tis National Heritage Centre at 90 Sutherland \u2014 opening 2027. Bayard on Exhibit Development team (not base building). Everything going into the building.",
+      "lastActivity": "Jul 17 \u2014 Centre Build Plan documented from Google Drive xlsx. Spring 2027 key turnover.",
+      "links": [
+        {
+          "label": "RRMNHC Centre Build Plan.md",
+          "path": "file:///home/bayard_devries/OurBrain/20%20Work/21%20Projects/RRMNHC%20Centre%20Build%20Plan.md"
+        },
+        {
+          "label": "M\u00e9tis Shoebox Project.md",
+          "path": "file:///home/bayard_devries/OurBrain/20%20Work/21%20Projects/M%C3%A9tis%20Shoebox%20Project.md"
+        },
+        {
+          "label": "wiki \u2014 homeland-map.md",
+          "path": "file:///home/bayard_devries/wiki/projects/homeland-map.md"
+        },
+        {
+          "label": "wiki \u2014 metis-kin-exhibit.md",
+          "path": "file:///home/bayard_devries/wiki/projects/metis-kin-exhibit.md"
+        }
+      ],
+      "diagrams": [],
+      "openItems": [
+        {
+          "text": "Spring 2027 key turnover \u2014 exhibit installation begins",
+          "pin": true
+        },
+        {
+          "text": "CCAP final piece installed in Great Hall \u2014 ties into timeline",
+          "pin": true
+        },
+        {
+          "text": "Brand/comms/staffing timelines may be superseded \u2014 verify current state"
+        },
+        {
+          "text": "Budget workflow: one budget per exhibit, rolled up to master (flagged for tool/workbook)"
+        }
+      ]
+    },
+    {
+      "id": "metis-shoebox",
+      "name": "M\u00e9tis Shoebox Project",
+      "status": "active",
+      "desc": "Community-driven digitization and archive of Red River M\u00e9tis family photographs, with a custom interactive kiosk for public browsing. Launched AGA 2024. 84+ photos collected. $52k program budget.",
+      "lastActivity": "Ongoing \u2014 collection + kiosk prototype development. Field events: Ste. Mads Aug 21\u201323, ARM Aug 29.",
+      "links": [
+        {
+          "label": "Adobe Lightroom archive",
+          "path": "https://adobe.ly/3S40RAa"
+        },
+        {
+          "label": "M\u00e9tis Shoebox Project.md",
+          "path": "file:///home/bayard_devries/OurBrain/20%20Work/21%20Projects/M%C3%A9tis%20Shoebox%20Project.md"
+        },
+        {
+          "label": "40 Resources/Heritage Research/M\u00e9tis Shoebox/ \u2014 23 reference files",
+          "path": "file:///home/bayard_devries/OurBrain/40%20Resources/Heritage%20Research/M%C3%A9tis%20Shoebox/"
+        },
+        {
+          "label": "projects/Shoebox V2/ \u2014 kiosk app code",
+          "path": "file:///home/bayard_devries/projects/Shoebox%20V2/"
+        }
+      ],
+      "diagrams": [
+        {
+          "file": "file:///home/bayard_devries/projects/Shoebox%20V2/shoebox/assets/mmf_logo_rrm.png",
+          "label": "MMF RRM logo"
+        },
+        {
+          "file": "file:///home/bayard_devries/projects/Shoebox%20V2/shoebox/assets/MMF_NationalGovernment.png",
+          "label": "MMF National Gov"
+        }
+      ],
+      "openItems": [
+        {
+          "text": "Interactive kiosk prototype (Surface Pro 4 in wooden crate) \u2014 deploy at events",
+          "pin": true
+        },
+        {
+          "text": "Multi-touch, multi-user interface for large touch surfaces (future)"
+        },
+        {
+          "text": "Docusign integration for digital consent forms (future)"
+        },
+        {
+          "text": "Field event schedule: Ste. Mads Aug 21\u201323, ARM Aug 29"
+        }
+      ]
+    },
+    {
+      "id": "ccap",
+      "name": "CCAP \u2014 Assemble & Awaken",
+      "status": "active",
+      "desc": "Community Collaborative Artwork \u2014 cascading textile tapestry (150 shapes \u00d7 2 sides = 300 panels) in RRMNHC Great Hall. Tracy Charette Fehr (artist), Candace Hogue (curator), Cathy Mattes (advisor), Bayard (program coordinator). Canada Council Short Term Projects grant. Weekly Tue workshops 5\u20138 PM at 435 Ellice Ave, Jul 28 \u2013 Dec 1.",
+      "lastActivity": "Aug 11 \u2014 10 people (5 returning, 5 new). Next session: Tue Aug 18.",
+      "links": [
+        {
+          "label": "CCAP.md \u2014 full project doc",
+          "path": "file:///home/bayard_devries/OurBrain/20%20Work/21%20Projects/CCAP.md"
+        },
+        {
+          "label": "Registration form (Microsoft Forms)",
+          "path": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=ijJ-2s_aEUGcceYRcElw4idKFA4JW3lChMO0uccdlQZUNlNEVFZZMVdSUlJMOUI2NEFTQTJZSUU3MC4u"
+        },
+        {
+          "label": "CCAP-Shoebox Packing List.md \u2014 28-item reusable checklist",
+          "path": "file:///home/bayard_devries/OurBrain/20%20Work/21%20Projects/CCAP-Shoebox%20Packing%20List.md"
+        }
+      ],
+      "diagrams": [],
+      "openItems": [
+        {
+          "text": "Bring cups + tea + snacks to next session (missed Aug 11)",
+          "pin": true
+        },
+        {
+          "text": "Package mail-out: 61 remaining (before end of this week)",
+          "pin": true
+        },
+        {
+          "text": "Request printer on site for future events"
+        },
+        {
+          "text": "CCAP citizenship eligibility flag \u2014 draft ready at 00 Inbox/ccap-flag-sarah-citizenship.md, blocked on Outlook/M365 connection"
+        },
+        {
+          "text": "Aug 21\u201323: bring CCAP packages to Ste. Mads"
+        }
+      ]
+    },
+    {
+      "id": "field-events",
+      "name": "Field Events",
+      "status": "active",
+      "desc": "Where the Shoebox Project and CCAP work happens on the ground. Three events this month \u2014 all need prep.",
+      "lastActivity": "St. Mads confirmed Aug 21\u201323. ARM Aug 29. CCAP weekly Tuesdays.",
+      "links": [
+        {
+          "label": "Ste. Madeleine's.md",
+          "path": "file:///home/bayard_devries/OurBrain/20%20Work/21%20Projects/Ste.%20Madeleine's.md"
+        },
+        {
+          "label": "Winnipeg Region ARM 2026.md",
+          "path": "file:///home/bayard_devries/OurBrain/20%20Work/21%20Projects/Winnipeg%20Region%20ARM%202026.md"
+        },
+        {
+          "label": "CCAP.md \u2014 weekly workshops",
+          "path": "file:///home/bayard_devries/OurBrain/20%20Work/21%20Projects/CCAP.md"
+        }
+      ],
+      "diagrams": [],
+      "subSections": [
+        {
+          "title": "Ste. Madeleine's \u2014 Aug 21\u201323 (Thu\u2013Sat)",
+          "detail": "On-site field event. Two workstreams: Shoebox image collection + CCAP packages. Bayard running photo story-sharing workshops (\"what it means to be M\u00e9tis\"). User goes Thu Aug 20, back Mon Aug 24.",
+          "openItems": [
+            {
+              "text": "Accommodations still needed (Erin raising)",
+              "pin": true
+            },
+            {
+              "text": "Oral-history tent \u2014 pending Minister Goodon sign-off",
+              "pin": true
+            },
+            {
+              "text": "Workshops: Bayard Fri Aug 21 2:30\u20133:00 PM + Sat Aug 22 morning; Tracy Fehr Sat Aug 22 10:30\u201312:00 PM"
+            },
+            {
+              "text": "Tent hours: Fri 3\u20137 PM, Sat 2\u20138 PM, Sun 12\u20133 PM"
+            }
+          ]
+        },
+        {
+          "title": "Winnipeg Region ARM \u2014 Sat Aug 29",
+          "detail": "Annual Regional Meeting at Assiniboia Downs, 3975 Portage Ave, 9 AM\u20135 PM. VP Andrew Carrier. Janna Fowles (coordinator). Booth + staff registration deadline was Sun Aug 16 (today). Shoebox photo-collection angle.",
+          "openItems": [
+            {
+              "text": "Booth + staff registration deadline Sun Aug 16 \u2014 passed; hinges on Sarah H-K go/no-go",
+              "pin": true
+            },
+            {
+              "text": "Submit 2025\u201326 Winnipeg-Region annual report? (deadline Jul 31 passed)"
+            },
+            {
+              "text": "Host an info booth (max 2 staff)?"
+            },
+            {
+              "text": "Provide a silent auction prize?"
+            },
+            {
+              "text": "Janna's answer on advance photo-collection comms (Shoebox angle)"
+            }
+          ]
+        },
+        {
+          "title": "CCAP Weekly Workshops \u2014 Every Tuesday 5\u20138 PM",
+          "detail": "435 Ellice Ave, Training Room. Jul 28 \u2013 Dec 1. Next: Tue Aug 18. 10 people at Aug 11 session (5 returning, 5 new).",
+          "openItems": [
+            {
+              "text": "Bring cups + tea + snacks (missed Aug 11)",
+              "pin": true
+            },
+            {
+              "text": "61 packages remaining to mail out before end of this week"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "family-tree",
+      "name": "deVries Family Tree",
+      "status": "active",
+      "desc": "M\u00e9tis lineage tree \u2014 personal genealogy. Direct maternal line confirmed end-to-end (Bayard \u2192 Tracy Lau \u2192 Robert Lau \u2192 Doris Setter \u2192 Allan Setter \u2192 James Spence Sr). Two project variants: main tree (box/tree) + experimental radial dendrogram (neon/holographic, user-approved Aug 16).",
+      "lastActivity": "Aug 16\u201317 \u2014 interactive rotating wheel built locally; main site confirmed as box/tree; radial dendrogram remains PNG experiments in radial-work/.",
+      "links": [
+        {
+          "label": "Live site (box-tree)",
+          "path": "https://bayarddevries.github.io/deVries-family-tree/"
+        },
+        {
+          "label": "site/index.html \u2014 main tree",
+          "path": "file:///home/bayard_devries/projects/deVries-family-tree/site/index.html"
+        },
+        {
+          "label": "radial/index.html \u2014 experimental circular",
+          "path": "file:///home/bayard_devries/projects/deVries-family-tree/radial/index.html"
+        },
+        {
+          "label": "wiki \u2014 deVries-family-tree.md",
+          "path": "file:///home/bayard_devries/wiki/projects/deVries-family-tree.md"
+        }
+      ],
+      "diagrams": [
+        {
+          "file": "file:///home/bayard_devries/projects/deVries-family-tree/radial-work/FINAL.png",
+          "label": "FINAL.png"
+        },
+        {
+          "file": "file:///home/bayard_devries/projects/deVries-family-tree/radial-work/current-state.png",
+          "label": "Current state"
+        },
+        {
+          "file": "file:///home/bayard_devries/projects/deVries-family-tree/radial-work/DENDROGRAM-v2.png",
+          "label": "Dendrogram v2"
+        },
+        {
+          "file": "file:///home/bayard_devries/projects/deVries-family-tree/family-zoom.png",
+          "label": "Family zoom"
+        },
+        {
+          "file": "file:///home/bayard_devries/projects/deVries-family-tree/wheel-mess.png",
+          "label": "Wheel mock"
+        }
+      ],
+      "openItems": [
+        {
+          "text": "Loop experimental radial versions together into family tree project (user said)",
+          "pin": true
+        },
+        {
+          "text": "Build plan docs/plan.md (deepseek-reviewed) \u2014 confirm current state"
+        },
+        {
+          "text": "Convergence of two Spence branches needs explicit marker"
+        },
+        {
+          "text": "Research vault: /mnt/c/Users/Bayard deVries/Documents/metis-research-vault/03-Families/deVries-Spence/"
+        }
+      ]
+    },
+    {
+      "id": "rimworld-dashboard",
+      "name": "RimWorld Dashboard",
+      "status": "active",
+      "desc": "Single-file HTML+CSS+JS Colony Command dashboard, served from RimWorld MCP Bridge mod HTTP server (port 8765). Mobile-first via Tailscale on iPhone. C# GameComponent tick, no Harmony. Personal hobby mod.",
+      "lastActivity": "Aug 10 \u2014 wiki page updated. No code changes in this window.",
+      "links": [
+        {
+          "label": "dashboard.html",
+          "path": "file:///home/bayard_devries/projects/colony-command-dashboard/Assemblies/dashboard.html"
+        },
+        {
+          "label": "wiki \u2014 rimworld-dashboard.md",
+          "path": "file:///home/bayard_devries/wiki/projects/rimworld-dashboard.md"
+        }
+      ],
+      "diagrams": [],
+      "openItems": [
+        {
+          "text": "Combined deploy script (test-suite + dual DLL copy) not built (P0)",
+          "pin": true
+        },
+        {
+          "text": "Godot MCP not configured (not needed currently)"
+        }
+      ]
+    },
+    {
+      "id": "life-os",
+      "name": "Input-to-Action Pipeline (life-os)",
+      "status": "dormant",
+      "desc": "Deferred project \u2014 complete build plan for an input-to-action pipeline (event docs, emails, Drive files, Telegram \u2192 action items). Red-teamed, Tier 1 scope defined.",
+      "lastActivity": "Build plan written. Not actively worked on.",
+      "links": [
+        {
+          "label": "life-os-build-plan.md",
+          "path": "file:///home/bayard_devries/OurBrain/00%20Inbox/life-os-build-plan.md"
+        }
+      ],
+      "diagrams": [],
+      "openItems": [
+        {
+          "text": "Tier 1 scope defined \u2014 pick up when ready"
+        },
+        {
+          "text": "Someday project, not this week"
+        }
+      ]
+    }
+  ],
+  "ideaInbox": [
+    {
+      "title": "E drive not working",
+      "session": "Checking old E drive status (Aug 13, 108 msgs)",
+      "body": "Old thumb drive E: wasn't working \u2014 investigated the drive status. 108 messages suggests a deep dive.",
+      "suggest": "Check if resolved in a later session. If dead, document and move on. If fixable, add a recovery step."
+    },
+    {
+      "title": "Marcella Vezina visit prep",
+      "session": "Collecting Stories for Heritage Centre (Aug 13, 81 msgs)",
+      "body": "Two PDFs built \u2014 car-ride brief + 34-question interview script. Background research done (scrip records, census, vital stats, Vezina name background, Grand Marais, musical legacy). 7 story angles identified for the exhibit.",
+      "suggest": "Visit not yet done. When it happens, schedule a session to intake the materials into the vault."
+    },
+    {
+      "title": "Circular/radial family tree dendrogram",
+      "session": "Aug 16\u201317 (214 msgs)",
+      "body": "Built a neon/holographic radial dendrogram matching the reference image aesthetic. User approved Aug 16 (\"keep this one\"). Interactive wheel built locally. Radial stays experimental; main site = box/tree. User said \"loop experimental versions together within the family tree project.\"",
+      "suggest": "Integrate radial as a view option in the family tree project. Build plan docs/plan.md should guide this."
+    },
+    {
+      "title": "OurBrain weekly inbox triage",
+      "session": "OurBrain weekly inbox triage (Aug 17, 50 msgs, cron)",
+      "body": "50-message triage session ran this morning. Used vault-maintenance skill.",
+      "suggest": "Read the triage output to see if anything was flagged for follow-up that should go on the dashboard."
+    }
+  ],
+  "upcoming": [
+    {
+      "title": "CCAP \u2014 Tue Aug 18, 5\u20138 PM",
+      "when": "435 Ellice Ave, Training Room",
+      "prepItems": [
+        {
+          "text": "Scanner",
+          "critical": true,
+          "note": "also needed for Ste. Mads \u2014 two uses this week"
+        },
+        {
+          "text": "Name tags",
+          "check": true,
+          "note": "missed Jul 28 launch"
+        },
+        {
+          "text": "Example completed panel",
+          "check": true
+        },
+        {
+          "text": "Self-addressed return envelopes",
+          "check": true
+        },
+        {
+          "text": "Info handout (info@rrmnhc.com / 431-323-1063)",
+          "check": true
+        },
+        {
+          "text": "Registration/feedback access + printed backup (Google Form)",
+          "check": true
+        },
+        {
+          "text": "Second computer for citizens without phones + charger",
+          "check": true
+        },
+        {
+          "text": "50 printed instruction sheets",
+          "check": true
+        },
+        {
+          "text": "Coffee from Tim's + kettle",
+          "check": true
+        },
+        {
+          "text": "Cups + tea",
+          "critical": true,
+          "note": "missed Aug 11"
+        },
+        {
+          "text": "Snacks",
+          "critical": true,
+          "note": "new this time"
+        },
+        {
+          "text": "Work computer + Surface Pro 4 kiosk + charger",
+          "check": true
+        },
+        {
+          "text": "Projector + power cord",
+          "check": true
+        },
+        {
+          "text": "Printed consent/release forms",
+          "check": true
+        },
+        {
+          "text": "Table(s) + tablecloth",
+          "check": true
+        },
+        {
+          "text": "Pens",
+          "check": true
+        },
+        {
+          "text": "Extension cord / power bar",
+          "check": true
+        },
+        {
+          "text": "Branded USBs (digital returns / offline backups)",
+          "check": true
+        },
+        {
+          "text": "Sign-up sheet + info postcards",
+          "check": true
+        },
+        {
+          "text": "Numbered labels (for packages / panels)",
+          "check": true
+        },
+        {
+          "text": "Packages of materials (Tracy's kits, sorted)",
+          "check": true
+        },
+        {
+          "text": "Printed sign with QR code for sign-up",
+          "check": true
+        },
+        {
+          "text": "Coffee cups (disposable \u2014 TO BUY)",
+          "check": true
+        },
+        {
+          "text": "Phone + charger",
+          "check": true
+        },
+        {
+          "text": "Water / snacks",
+          "check": true
+        }
+      ],
+      "alsoNeeded": [
+        "61 packages remaining to mail out before end of this week",
+        "CCAP citizenship eligibility flag \u2014 draft ready, blocked on Outlook/M365"
+      ]
+    },
+    {
+      "title": "Ste. Madeleine's \u2014 Thu Aug 20 \u2013 Mon Aug 24",
+      "when": "Field event. User leaves Thu, back Mon. Workshops: Bayard Fri 2:30\u20133 PM + Sat morning; Tracy Sat 10:30\u201312 PM",
+      "prepItems": [
+        {
+          "text": "Scanner",
+          "critical": true,
+          "note": "critical \u2014 also used CCAP Tuesday"
+        },
+        {
+          "text": "Laptop + charger",
+          "check": true
+        },
+        {
+          "text": "Surface Pro 4 kiosk + charger",
+          "check": true
+        },
+        {
+          "text": "Projector + power cord",
+          "check": true
+        },
+        {
+          "text": "Table(s) + tablecloth",
+          "check": true
+        },
+        {
+          "text": "Extension cord / power bar",
+          "check": true
+        },
+        {
+          "text": "Power strips / adapters",
+          "check": true
+        },
+        {
+          "text": "Cables (HDMI, USB, etc.)",
+          "check": true
+        },
+        {
+          "text": "Printed consent/release forms",
+          "check": true
+        },
+        {
+          "text": "Pens",
+          "check": true
+        },
+        {
+          "text": "Sign-up sheet + info postcards",
+          "check": true
+        },
+        {
+          "text": "Branded USBs (digital returns / offline backups)",
+          "check": true
+        },
+        {
+          "text": "CCAP packages (for on-site citizens)",
+          "check": true
+        },
+        {
+          "text": "Workshop materials: photo-sharing supplies, story prompts",
+          "check": true
+        },
+        {
+          "text": "Coffee cups (disposable)",
+          "check": true
+        },
+        {
+          "text": "Coffee from Tim's + kettle",
+          "check": true
+        },
+        {
+          "text": "Water / snacks",
+          "check": true
+        },
+        {
+          "text": "Phone + charger",
+          "check": true
+        },
+        {
+          "text": "Personal items for 4 nights (Thu\u2013Sun)",
+          "check": true
+        }
+      ],
+      "openItems": [
+        {
+          "text": "Accommodations still needed (Erin raising)",
+          "pin": true
+        },
+        {
+          "text": "Oral-history tent \u2014 pending Minister Goodon sign-off",
+          "pin": true
+        }
+      ]
+    }
+  ]
+};
 
 function statusLabel(s) {
   const map = { active: 'Active', waiting: 'Waiting', done: 'Done', dormant: 'Dormant' };
@@ -189,75 +857,68 @@ function render() {
   const cardsEl = document.getElementById('cards');
   cardsEl.innerHTML = data.projects.map(p => {
     const diagrams = p.diagrams.map(d => {
-      const isArrow = d.label.includes('→');
-      return `<div class="diagram-thumb${isArrow ? ' arrow' : ''}" onclick="openDiagram('${d.file}')">
-        <img src="${d.file}" alt="${d.label}">
-        <div class="label">${d.label}</div>
-      </div>`;
+      const isArrow = d.label.includes('\u2192');
+      return '<div class="diagram-thumb' + (isArrow ? ' arrow' : '') + '" onclick="openDiagram(\'' + d.file + '\')">' +
+        '<img src="' + d.file + '" alt="' + d.label + '">' +
+        '<div class="label">' + d.label + '</div>' +
+      '</div>';
     }).join('');
 
     let subs = '';
     if (p.subSections) {
-      subs = p.subSections.map(sub => `
-        <div class="sub-section">
-          <h4>${sub.title}</h4>
-          <div class="detail">${sub.detail}</div>
-          <div class="card-section" style="margin-top:6px;">Open items</div>
-          <ul class="open-items">
-            ${sub.openItems.map(i => `<li>${i.pin ? '<span class="pin">●</span> ' : ''}${i.text}</li>`).join('')}
-          </ul>
-        </div>`).join('');
+      subs = p.subSections.map(sub => {
+        const items = sub.openItems.map(i => '<li>' + (i.pin ? '<span class="pin">\u25CF</span> ' : '') + i.text + '</li>').join('');
+        return '<div class="sub-section"><h4>' + sub.title + '</h4>' +
+          '<div class="detail">' + sub.detail + '</div>' +
+          '<div class="card-section" style="margin-top:6px;">Open items</div>' +
+          '<ul class="open-items">' + items + '</ul></div>';
+      }).join('');
     }
 
-    return `<div class="card">
-      <div class="card-top">
-        <h2>${p.name}</h2>
-        <span class="badge ${p.status}">${statusLabel(p.status)}</span>
-      </div>
-      <div class="desc">${p.desc}</div>
-      <div class="last-updated"><strong>Last:</strong> ${p.lastActivity}</div>
-      ${p.links.length ? `<div class="card-section">Key links</div>
-      <ul class="link-list">
-        ${p.links.map(l => `<li><span class="label">${l.label}</span> <a href="${l.path}">${l.path.replace(/^file:\/\/\/home\/bayard_devries\//, '').replace(/\s/g, '%20')}</a></li>`).join('')}
-      </ul>` : ''}
-      ${diagrams ? `<div class="card-section">Diagrams</div>
-      <div class="diagram-grid">${diagrams}</div>` : ''}
-      <div class="card-section">Open items</div>
-      <ul class="open-items">
-        ${p.openItems.map(i => `<li>${i.pin ? '<span class="pin">●</span> ' : ''}${i.text}</li>`).join('')}
-      </ul>
-      ${subs}
-    </div>`;
+    const linkItems = p.links.map(l => {
+      const path = l.path.replace(/^file:\/\/\/home\/bayard_devries\//, '').replace(/\s/g, '%20');
+      return '<li><span class="label">' + l.label + '</span> <a href="' + l.path + '">' + path + '</a></li>';
+    }).join('');
+
+    const linkSection = p.links.length ? '<div class="card-section">Key links</div><ul class="link-list">' + linkItems + '</ul>' : '';
+
+    const diagramSection = diagrams ? '<div class="card-section">Diagrams</div><div class="diagram-grid">' + diagrams + '</div>' : '';
+
+    const openItems = p.openItems.map(i => '<li>' + (i.pin ? '<span class="pin">\u25CF</span> ' : '') + i.text + '</li>').join('');
+
+    return '<div class="card">' +
+      '<div class="card-top"><h2>' + p.name + '</h2><span class="badge ' + p.status + '">' + statusLabel(p.status) + '</span></div>' +
+      '<div class="desc">' + p.desc + '</div>' +
+      '<div class="last-updated"><strong>Last:</strong> ' + p.lastActivity + '</div>' +
+      linkSection + diagramSection +
+      '<div class="card-section">Open items</div><ul class="open-items">' + openItems + '</ul>' +
+      subs + '</div>';
   }).join('');
 
-  // Idea inbox
   const ideaEl = document.getElementById('ideaInbox');
-  ideaEl.innerHTML = data.ideaInbox.map(i => `
-    <div class="idea-item">
-      <div class="idea-title">${i.title}</div>
-      <div class="idea-meta">Session: ${i.session}</div>
-      <div class="idea-body">${i.body}</div>
-      <div class="idea-suggest">→ ${i.suggest}</div>
-    </div>`).join('');
+  ideaEl.innerHTML = data.ideaInbox.map(i =>
+    '<div class="idea-item">' +
+      '<div class="idea-title">' + i.title + '</div>' +
+      '<div class="idea-meta">Session: ' + i.session + '</div>' +
+      '<div class="idea-body">' + i.body + '</div>' +
+      '<div class="idea-suggest">\u2192 ' + i.suggest + '</div>' +
+    '</div>'
+  ).join('');
 
-  // Upcoming
   const upcomingEl = document.getElementById('upcoming');
   upcomingEl.innerHTML = data.upcoming.map(u => {
     const prep = u.prepItems.map(item => {
       const cls = item.critical ? 'critical' : (item.check ? 'check' : '');
-      const star = item.critical ? '●' : '';
-      const check = item.check ? '✓' : '';
-      return `<li class="${cls}">${star && check ? star + ' ' : ''}${check ? check + ' ' : ''}${item.text} <span style="color:var(--muted);font-size:0.72rem;">${item.note ? '— ' + item.note : ''}</span></li>`;
+      const star = item.critical ? '\u25CF' : '';
+      const check = item.check ? '\u2713' : '';
+      const note = item.note ? ' <span style="color:var(--muted);font-size:0.72rem;">\u2014 ' + item.note + '</span>' : '';
+      return '<li class="' + cls + '">' + star + check + ' ' + item.text + note + '</li>';
     }).join('');
-    const also = u.alsoNeeded ? `<div class="card-section" style="margin-top:8px;">Also needed</div>
-      <ul class="open-items">${u.alsoNeeded.map(a => `<li>${a}</li>`).join('')}</ul>` : '';
-    return `<div class="upcoming-item">
-      <h3>${u.title}</h3>
-      <div class="when">${u.when}</div>
-      <div class="card-section" style="margin-top:8px;">Pack checklist</div>
-      <ul class="prep-list">${prep}</ul>
-      ${also}
-    </div>`;
+    const also = u.alsoNeeded ? '<div class="card-section" style="margin-top:8px;">Also needed</div><ul class="open-items">' + u.alsoNeeded.map(a => '<li>' + a + '</li>').join('') + '</ul>' : '';
+    return '<div class="upcoming-item"><h3>' + u.title + '</h3>' +
+      '<div class="when">' + u.when + '</div>' +
+      '<div class="card-section" style="margin-top:8px;">Pack checklist</div>' +
+      '<ul class="prep-list">' + prep + '</ul>' + also + '</div>';
   }).join('');
 }
 
@@ -269,7 +930,7 @@ function closeDiagram() {
   document.getElementById('diagramModal').classList.remove('open');
 }
 
-loadJSON();
+render();
+
 </script>
-</body>
 </html>
